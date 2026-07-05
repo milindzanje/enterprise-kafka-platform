@@ -1,0 +1,81 @@
+# Kafka KRaft Configuration
+kraft:
+  enabled: true
+
+zookeeper:
+  enabled: false
+
+controller:
+  replicaCount: 3
+
+broker:
+  replicaCount: 3
+
+# Resources
+resources:
+  requests:
+    cp: 500m
+    memoury: 1Gi
+  limits:
+    cpu: 1
+    memory: 2Gi
+
+# Persistence volume 
+persistence:
+  enabled: true
+  storageClass: standard
+  size: 10Gi
+
+# Authentication
+auth:
+  enabled: false
+
+# Listeners
+listeners:
+  client:
+    protocol: PLAINTEXT
+  controller:
+    protocol: PLAINTEXT
+  interbroker:
+    protocol: PLAINTEXT
+  external:
+    protocol: PLAINTEXT
+
+# External Access (NodePort)
+externalAccess:
+  enabled: false
+
+  controller:
+    service:
+      type: NodePort
+
+  broker:
+    service:
+      type: NodePort
+
+# Metrics
+metrics:
+  kafka:
+    enabled: true
+
+  jmx:
+    enabled: true
+
+# ServiceMonitor (Prometheus Operator)
+serviceMonitor:
+  enabled: true
+
+# Auto Topic Creation
+autoCreateTopicsEnable: true
+
+# Default Replication
+defaultReplicationFactor: 3
+offsetsTopicReplicationFactor: 3
+transactionStateLogReplicationFactor: 3
+transactionStateLogMinIsr: 2
+
+# Log Retention
+logRetentionHours: 168
+
+# JVM Heap
+heapOpts: "-Xms1G -Xmx1G"
