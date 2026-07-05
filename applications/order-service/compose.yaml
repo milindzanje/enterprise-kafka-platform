@@ -1,0 +1,13 @@
+services:
+  activemq:
+    image: 'apache/activemq-classic:latest'
+    ports:
+      - '61616'
+  artemis:
+    image: 'apache/activemq-artemis:latest'
+    ports:
+      - '61616'
+  redis:
+    image: 'redis:latest'
+    ports:
+      - '6379'
